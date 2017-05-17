@@ -15,7 +15,41 @@
 </div>
 
 <!-- add new -->
-<a ng-click=""><button>new</button></a>
+<a ng-click="$ctrl.toggleCreate()"><button>new</button></a>
+
+<!-- create form -->
+
+<div class="row" ng-show="$ctrl.showPost">
+  <div class="col-md-8">
+    <form novalidate name="$ctrl.createPostForm" ng-submit="$ctrl.createPost()">
+      <div class=“form-group” >
+        <label for="title">title</label>
+        <input name="title" ng-model="$ctrl.post.title"
+        id="title" class="form-control">
+      </div>
+      <div class=“form-group”>
+        <label for="body">description</label>
+        <textarea name="body"  ng-model="$ctrl.post.description" id="body" class="form-control"
+        ></textarea>
+      </div>
+      <div class=“form-group”>
+        <label for="author">price</label>
+        <input name="author" ng-model="$ctrl.post.price" id="author">
+      </div>
+      <div class=“form-group”>
+        <label for="image-url">Image URL</label>
+        <input name="url" ng-model="$ctrl.post.item_image" id="image-url">
+      </div>
+      <div class="form-group">
+      </br>
+        <button type="submit" class="btn btn-primary">
+          Create Post
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
 
 <div ng-repeat="post in $ctrl.posts | filter:filterText| orderBy:oSelect">
    <div class="container post">

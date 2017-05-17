@@ -5,15 +5,16 @@ const app = express();
 const logger = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
-
 const messages = require('./routes/classifieds');
-app.use('/classifieds', messages);
 
-app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(logger('dev'));
+
 
 app.use(express.static(path.join(__dirname, '/../client')))
 app.use(express.static(path.join(__dirname, '/../', 'node_modules')))
+
+app.use('/classifieds', messages);
 
 app.use('*', function(req, res, next) {
   res.sendFile('index.html', {root: path.join(__dirname, '/../client')})

@@ -13,12 +13,11 @@
          vm.$onInit = onInit
          vm.posts = [1,2,3]
          vm.doGet = doGet
-         // vm.toggleCreate = toggleCreate
-         // vm.createPost = createPost
+         vm.toggleCreate = toggleCreate
+         vm.createPost = createPost
          // vm.deletePost = deletePost
 
          function onInit() {
-            console.log('im trying');
             doGet()
          }
 
@@ -26,13 +25,18 @@
             postService.getPosts().then(posts => {
                vm.posts = posts
             })
-            console.log('got');
          }
 
-         // function toggleCreate() {
-         //    vm.showPost ? vm.showPost = !vm.showPost :  vm.showPost = true
-         //
-         // }
+         function toggleCreate() {
+            vm.showPost ? vm.showPost = !vm.showPost :  vm.showPost = true
+
+         }
+
+         function createPost() {
+            postService.addPost(vm.post).then(res => {
+               vm.posts.push(res)
+            })
+         }
          // function createPost() {
          //    // vm.post.time = new Date()
          //    // vm.post.vote_count = 0

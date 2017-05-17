@@ -10,11 +10,19 @@
       const sm = this
 
       sm.getPosts = getPosts
+      sm.addPost = addPost
 
       function getPosts() {
-         console.log('insid post Services GETPOST');
          return $http.get('/classifieds').then(posts => {
             return posts.data
+         })
+      }
+
+      function addPost(post) {
+         console.log('addPost', post);
+         return $http.post('/classifieds', post).then(res => {
+            console.log('res', res);
+            return res.data
          })
       }
 
