@@ -25,6 +25,7 @@ router.get('/:id', (req, res) => {
    })
 
    router.post('/', (req, res) => {
+      console.log('req', req.body);
       knex('classifieds')
          .insert(req.body)
          .returning(['id','description', 'title', 'price', 'item_image'])

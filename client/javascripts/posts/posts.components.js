@@ -36,6 +36,8 @@
             postService.addPost(vm.post).then(res => {
                vm.posts.push(res)
             })
+            delete vm.post
+            vm.showPost = false
          }
          // function createPost() {
          //    // vm.post.time = new Date()
