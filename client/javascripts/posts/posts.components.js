@@ -15,16 +15,10 @@
          vm.doGet = doGet
          vm.toggleCreate = toggleCreate
          vm.createPost = createPost
-         // vm.deletePost = deletePost
+         vm.deletePost = deletePost
 
          function onInit() {
             doGet()
-         }
-
-         function doGet() {
-            postService.getPosts().then(posts => {
-               vm.posts = posts
-            })
          }
 
          function toggleCreate() {
@@ -39,35 +33,21 @@
             delete vm.post
             vm.showPost = false
          }
-         // function createPost() {
-         //    // vm.post.time = new Date()
-         //    // vm.post.vote_count = 0
-         //    postService.addPost(vm.post).then(res => {
-         //       vm.posts.push(res)
-         //    })
-         //    delete vm.post
-         //    vm.showPost = false
-         // }
 
-         // function deletePost(id) {
-         //    postService.deletePost(id).then(res => {
-         //       for (var obj of vm.posts){
-         //          if (obj.id == id){
-         //             obj = null
-         //          }
-         //       }
-         //       onInit()
-         //    })
-         // }
+         function deletePost(id) {
+            postService.deletePost(id).then(res => {
+               console.log('id', id);
+               vm.posts.splice(id, 1)
+            })
+            doGet()
+         }
 
+         function doGet() {
+            postService.getPosts().then(posts => {
+               vm.posts = posts
+            })
+         }
 
-
-         // function onInit() {
-         //    vm.showPost = false
-         //    postService.getPosts().then(posts => {
-         //       vm.posts = posts
-         //    })
-         // }
       }
 
 }())

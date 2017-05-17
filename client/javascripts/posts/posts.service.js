@@ -11,6 +11,7 @@
 
       sm.getPosts = getPosts
       sm.addPost = addPost
+      sm.deletePost = deletePost
 
       function getPosts() {
          return $http.get('/classifieds').then(posts => {
@@ -23,6 +24,12 @@
          return $http.post('/classifieds', post).then(res => {
             console.log('res', res);
             return res.data
+         })
+      }
+
+      function deletePost(id) {
+         return $http.delete(`/classifieds/${id}`).then(post => {
+            return post.data
          })
       }
 
