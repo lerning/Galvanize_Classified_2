@@ -1,0 +1,27 @@
+<!-- filter -->
+<div class="nav nav-pills">
+  <div role="presentation" class="active" style="padding-right: 10px;">
+    <input type="search" class="form-control input-sm search-form" placeholder="Filter" ng-model="filterText" >
+  </div>
+
+  <!--  sort -->
+  <div class="form-inline">
+    <label for="sort"> Sort by </label>
+    <select class="form-control" id="sort" ng-model="oSelect">
+      <option value="title">title</option>
+      <option value="description">description</option>
+    </select>
+  </div>
+</div>
+
+<!-- add new -->
+<a ng-click=""><button>new</button></a>
+
+<div ng-repeat="post in $ctrl.posts | filter:filterText| orderBy:oSelect">
+   <div class="container post">
+      <img src={{post.item_image}} width="100em"></img>
+      <div>title: {{ post.title }}</div>
+      <div>description: {{ post.description }}</div>
+      <div>price: {{ post.price }}</div>
+   </div>
+</div>
