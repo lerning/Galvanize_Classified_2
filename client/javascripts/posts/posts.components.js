@@ -16,6 +16,8 @@
          vm.toggleCreate = toggleCreate
          vm.createPost = createPost
          vm.deletePost = deletePost
+         vm.updatePost = updatePost
+         vm.editPost = editPost
 
          function onInit() {
             doGet()
@@ -23,7 +25,6 @@
 
          function toggleCreate() {
             vm.showPost ? vm.showPost = !vm.showPost :  vm.showPost = true
-
          }
 
          function createPost() {
@@ -32,6 +33,23 @@
             })
             delete vm.post
             vm.showPost = false
+         }
+
+
+         function updatePost(postId) {
+            vm.updateId = postId
+            vm.showEdit ? vm.showEdit = !vm.showEdit :  vm.showEdit = true
+            postService.editForm(postId).then(res => {
+               vm.post = res
+            })
+         }
+
+         function editPost(post, postId) {
+            postService.editPost(post, postId).then(res => {
+               doGet()
+               delete vm.post
+               vm.showEdit = false
+            })
          }
 
          function deletePost(id) {
